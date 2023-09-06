@@ -248,15 +248,7 @@ fn justfile_directory(context: &FunctionContext) -> Result<String, String> {
     )
   })?;
 
-  justfile_directory
-    .to_str()
-    .map(str::to_owned)
-    .ok_or_else(|| {
-      format!(
-        "Justfile directory is not valid unicode: {}",
-        justfile_directory.display()
-      )
-    })
+  Ok(justfile_directory.display().to_string())
 }
 
 fn kebabcase(_context: &FunctionContext, s: &str) -> Result<String, String> {
